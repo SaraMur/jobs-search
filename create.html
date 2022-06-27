@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>Create</title>
+</head>
+<body>
+    <head>
+        <nav>
+            <i></i>
+            <a href="index.html" class="subtitle is-6">Home</a>
+            <a href="create.html" class="subtitle is-6">Create job</a>
+        </nav>
+    </head>
+    <form id="create-new-job">
+        <label for="new-job-title">Job title</label>
+        <input type="text" name="nJTitle" id="new-job-title"/>
+
+        <label for="new-job-description">Description</label>
+        <textarea name= "nJdescription" class="textarea" id="new-job-description"></textarea>
+
+        <label for="">Tags</label>
+        <input type="text" name= "nJlocation" value="location" placeholder="location" id="new-job-location-tag" />
+        <input type="text" name= "nJseniority" value="seniority" placeholder="seniority" id="new-job-seniority-tag" />
+        <input type="text" name= "nJcategory" value="category" placeholder="category" id="new-job-category-tag" />
+        
+        <button type="submit">Submit</button>
+    </form>
+
+    <script src="./api/helpers.js"></script>
+    <script src="./api/create.js"></script>
+    <script src="app/create-job.js"></script>
+</body>
+</html>
