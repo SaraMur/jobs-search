@@ -5,8 +5,8 @@ const addJob = async (job) =>{
     const options = {
         method: 'POST',
         body: JSON.stringify(job),
-        Headers:{
-            contentType: 'application/json'
+        headers:{
+            "content-type": 'application/json'
         }
     }
     

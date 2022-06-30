@@ -40,7 +40,7 @@ var fxEventCreate = function (event) { return __awaiter(_this, void 0, void 0, f
     var name, description, location, seniority, category, requestData, data;
     return __generator(this, function (_a) {
         event.preventDefault();
-        name = document.getElementById("new-job-title").value;
+        name = event.target.nJTitle.value;
         description = document.getElementById("new-job-description").value;
         location = document.getElementById("new-job-location-tag").value;
         seniority = document.getElementById("new-job-seniority-tag").value;

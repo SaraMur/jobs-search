@@ -3,7 +3,7 @@ const createNewJob = document.getElementById('create-new-job');
 const fxEventCreate = async (event) => {
     event.preventDefault()
 
-    let name = (<HTMLInputElement>document.getElementById("new-job-title")).value;
+    let name = event.target.nJTitle.value;
     let description =  (<HTMLInputElement>document.getElementById("new-job-description")).value;
     let location =  (<HTMLInputElement>document.getElementById("new-job-location-tag")).value;
     let seniority =  (<HTMLInputElement>document.getElementById("new-job-seniority-tag")).value;
