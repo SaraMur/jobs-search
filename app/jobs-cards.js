@@ -35,17 +35,64 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var _this = this;
-var jobsTable = document.getElementById('table-jobs');
-var loadCards = function () { return __awaiter(_this, void 0, void 0, function () {
+var loadCards = function (jobsTable) { return __awaiter(_this, void 0, void 0, function () {
     var jobs;
+    var _this = this;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, getJobs()];
             case 1:
                 jobs = _a.sent();
-                console.log(jobs);
+                jobsTable.querySelector('tbody').innerHTML = '';
+                jobs.forEach(function (job) {
+                    var _a;
+                    var tr = document.createElement('tr');
+                    var tdID = document.createElement('td');
+                    var tdName = document.createElement('td');
+                    var tdDescription = document.createElement('td');
+                    var tdCategory = document.createElement('td');
+                    var tdSenority = document.createElement('td');
+                    var tdActions = document.createElement('td');
+                    tr.appendChild(tdID);
+                    tr.appendChild(tdName);
+                    tr.appendChild(tdDescription);
+                    tr.appendChild(tdCategory);
+                    tr.appendChild(tdSenority);
+                    tdSenority.appendChild(tdActions);
+                    var textID = document.createTextNode(job.id);
+                    tdID.appendChild(textID);
+                    var textName = document.createTextNode(job.name);
+                    tdName.appendChild(textName);
+                    var textDescription = document.createTextNode(job.description);
+                    tdDescription.appendChild(textDescription);
+                    var textCategory = document.createTextNode(job.category);
+                    tdCategory.appendChild(textCategory);
+                    var textSenority = document.createTextNode(job.senority);
+                    tdSenority.appendChild(textSenority);
+                    var editBtn = document.createElement('a');
+                    editBtn.setAttribute('href', "edit-job.html?=id".concat(job.id));
+                    editBtn.appendChild(document.createTextNode('edit'));
+                    var deleteBtn = document.createElement('button');
+                    deleteBtn.appendChild(document.createTextNode('delete'));
+                    deleteBtn.addEventListener('click', function () { return __awaiter(_this, void 0, void 0, function () {
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, deleteJob(job.id)];
+                                case 1:
+                                    _a.sent();
+                                    loadCards(jobsTable);
+                                    return [2 /*return*/];
+                            }
+                        });
+                    }); });
+                    tdActions.appendChild(editBtn);
+                    tdActions.appendChild(deleteBtn);
+                    //deleteBtn.innerHTML = '';
+                    (_a = jobsTable === null || jobsTable === void 0 ? void 0 : jobsTable.querySelector('tbody')) === null || _a === void 0 ? void 0 : _a.appendChild(tr);
+                });
                 return [2 /*return*/];
         }
     });
 }); };
-loadCards();
+var jobsTable = document.getElementById('table-jobs');
+loadCards(jobsTable);

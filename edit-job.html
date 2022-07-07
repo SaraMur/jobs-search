@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="/jobs-cards.html">
     <link rel="stylesheet" href="/index.html">
-    <title>Create</title>
+    <title>Edit job</title>
 </head>
 <body>
     <head>
@@ -17,10 +17,10 @@
             <a href="create.html" class="subtitle is-6">Create job</a>
         </nav>
     </head>
-    <h1>Add job</h1>
-    <form id="form-add-job">
-        <label for="new-job-name">Job title</label>
-        <input type="text" name="nJTitle" id="new-job-name"/>
+    <h1>Edit job</h1>
+    <form id="form-edit-job">
+        <label for="new-job-title">Job title</label>
+        <input type="text" name="nJTitle" id="new-job-title"/>
 
         <label for="new-job-description">Description</label>
         <textarea name= "nJdescription" class="textarea" id="new-job-description"></textarea>
@@ -35,6 +35,6 @@
 
     <script src="./api/helpers.js"></script>
     <script src="./api/create.js"></script>
-    <script src="app/create-job.js"></script>
+    <script src="./app/edit-job.js"></script>
 </body>
 </html>
