@@ -7,13 +7,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="/jobs-cards.html">
     <link rel="stylesheet" href="/index.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <title>Create</title>
 </head>
 <body>
     <head>
         <nav>
             <i></i>
-            <a href="index.html" class="subtitle is-6">Home</a>
+            <a href="jobs-cards.html" class="subtitle is-6">Home</a>
             <a href="create.html" class="subtitle is-6">Create job</a>
         </nav>
     </head>
@@ -26,14 +29,36 @@
         <textarea name= "nJdescription" class="textarea" id="new-job-description"></textarea>
 
         <label for="">Tags</label>
-        <input type="text" name= "nJlocation" value="location" placeholder="location" id="new-job-location-tag" />
+        <!-- <input type="text" name= "nJlocation" value="location" placeholder="location" id="new-job-location-tag" />
         <input type="text" name= "nJseniority" value="seniority" placeholder="seniority" id="new-job-seniority-tag" />
         <input type="text" name= "nJcategory" value="category" placeholder="category" id="new-job-category-tag" />
-        
+         -->
+         
+        <select name="location" id="new-job-location-tag">
+            <option value="argentina">Argentina</option>
+            <option value="brazil">Brazil</option>
+            <option value="china">China</option>
+            <option value="spain">Spain</option>
+            <option value="usa">USA</option>
+        </select>
+    
+        <select name="seniority" id="new-job-seniority-tag">
+            <option value="sr">SR</option>
+            <option value="ssr">SSR</option>
+            <option value="jr">JR</option>
+            <option value="trainee">Trainee</option>
+        </select>
+    
+        <select name="category" id="new-job-category-tag">
+            <option value="it">IT</option>
+            <option value="design">DESIGN</option>
+            <option value="developer">DEVELOPER</option>
+            <option value="manager">MANAGER</option>
+        </select>
+
         <button type="submit">Submit</button>
     </form>
 
-    <script src="./api/helpers.js"></script>
     <script src="./api/create.js"></script>
     <script src="app/create-job.js"></script>
 </body>

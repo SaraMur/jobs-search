@@ -1,6 +1,5 @@
 const formAddJob = document.getElementById('form-add-job');
 
-
 formAddJob?.addEventListener('submit', async (event) => {
     event.preventDefault()
 
@@ -17,10 +16,7 @@ formAddJob?.addEventListener('submit', async (event) => {
         seniority,
         category 
     }
-    const data = await addJob(requestData);
+    await addJob(requestData);
 
-    window.location.href = 'jobs-loadCards.html'
-
-    console.log('data Result');
-    console.log(data);
+    window.location.href = 'jobs-cards.html'
 });

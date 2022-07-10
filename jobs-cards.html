@@ -4,27 +4,58 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/create.html">
-    <link rel="stylesheet" href="/index.html">
+    <link rel="stylesheet" href="./index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <title>Jobs</title>
 </head>
 <body>
-    <h1>Jobs</h1>
+    <div id="cover-spin">
+        <div id="loader"> </div>
+    </div>
+    <h1>Job finder</h1>
     <a href="create.html">Add job</a>
-    <table id="table-jobs">
-        <thead>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Location</th>
-            <th>Category</th>
-            <th>Seniority</th>
-            <th>Actions</th>
-        </thead>
-        <tbody></tbody>
-    </table>
-    <script src="./api/helpers.js"></script>
+
+<!-- SEARCH NAV --> 
+
+<form id="seach-nav">
+    <select name="location" id="new-job-location-tag">
+        <option value="">ALL</option>
+        <option value="argentina">Argentina</option>
+        <option value="brazil">Brazil</option>
+        <option value="china">China</option>
+        <option value="spain">Spain</option>
+        <option value="usa">USA</option>
+    </select>
+
+    <select name="seniority" id="new-job-seniority-tag">
+        <option value="">ALL</option>
+        <option value="sr">SR</option>
+        <option value="ssr">SSR</option>
+        <option value="jr">JR</option>
+        <option value="trainee">Trainee</option>
+    </select>
+
+    <select name="category" id="new-job-category-tag">
+        <option value="">ALL</option>
+        <option value="it">IT</option>
+        <option value="design">DESIGN</option>
+        <option value="developer">DEVELOPER</option>
+        <option value="manager">MANAGER</option>
+    </select>
+</form>
+
+<!-- END SEARCH NAV -->
+
+
+    <div id="table-jobs" class="cards"></div>
     <script src="./api/create.js"></script>
     <script src="./app/jobs-cards.js"></script>
+
+    <footer class="footer">
+        Made with ❤ by Sari
+    </footer>
 </body>
 </html>

@@ -37,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var _this = this;
 var formAddJob = document.getElementById('form-add-job');
 formAddJob === null || formAddJob === void 0 ? void 0 : formAddJob.addEventListener('submit', function (event) { return __awaiter(_this, void 0, void 0, function () {
-    var name, description, location, seniority, category, requestData, data;
+    var name, description, location, seniority, category, requestData;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -56,10 +56,8 @@ formAddJob === null || formAddJob === void 0 ? void 0 : formAddJob.addEventListe
                 };
                 return [4 /*yield*/, addJob(requestData)];
             case 1:
-                data = _a.sent();
-                window.location.href = 'jobs-loadCards.html';
-                console.log('data Result');
-                console.log(data);
+                _a.sent();
+                window.location.href = 'jobs-cards.html';
                 return [2 /*return*/];
         }
     });
