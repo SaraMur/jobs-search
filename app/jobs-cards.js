@@ -35,9 +35,63 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var _this = this;
+var drawCards = function (tableJobs, jobs) {
+    tableJobs.innerHTML = '';
+    jobs.forEach(function (job) {
+        var container = document.createElement('div');
+        container.className = 'card';
+        var title = document.createElement('h3');
+        var description = document.createElement('p');
+        var location = document.createElement('span');
+        var seniority = document.createElement('span');
+        var category = document.createElement('span');
+        //const textID = document.createTextNode(job.id);
+        //h3.appendChild(textID);
+        var textName = document.createTextNode(job.name);
+        title.appendChild(textName);
+        var textDescription = document.createTextNode(job.description);
+        description.appendChild(textDescription);
+        var textLocation = document.createTextNode(job.location);
+        location.appendChild(textLocation);
+        var textCategory = document.createTextNode(job.category);
+        category.appendChild(textCategory);
+        var textSeniority = document.createTextNode(job.seniority);
+        seniority.appendChild(textSeniority);
+        var editBtn = document.createElement('a');
+        editBtn.setAttribute('href', "edit-job.html?id=".concat(job.id));
+        editBtn.appendChild(document.createTextNode('edit'));
+        editBtn.className = 'button-28';
+        var deleteBtn = document.createElement('button');
+        deleteBtn.appendChild(document.createTextNode('delete'));
+        deleteBtn.className = 'button-28';
+        deleteBtn.addEventListener('click', function () { return __awaiter(_this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, deleteJob(job.id)];
+                    case 1:
+                        _a.sent();
+                        loadCards(tableJobs);
+                        return [2 /*return*/];
+                }
+            });
+        }); });
+        container.appendChild(title);
+        container.appendChild(document.createElement('br'));
+        container.appendChild(description);
+        container.appendChild(document.createElement('br'));
+        container.appendChild(location);
+        container.appendChild(document.createElement('br'));
+        container.appendChild(category);
+        container.appendChild(document.createElement('br'));
+        container.appendChild(seniority);
+        container.appendChild(document.createElement('br'));
+        container.appendChild(editBtn);
+        container.appendChild(deleteBtn);
+        tableJobs.appendChild(container);
+    });
+};
 var loadCards = function (tableJobs) { return __awaiter(_this, void 0, void 0, function () {
     var jobs;
-    var _this = this;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -46,79 +100,64 @@ var loadCards = function (tableJobs) { return __awaiter(_this, void 0, void 0, f
             case 1:
                 jobs = _a.sent();
                 loader('hide');
-                tableJobs.innerHTML = '';
-                jobs.forEach(function (job) {
-                    /*
-                    const tr = document.createElement('tr');
-                    const tdID = document.createElement('td');
-                    const tdName = document.createElement('td');
-                    const tdDescription = document.createElement('td');
-                    const tdCategory = document.createElement('td');
-                    const tdSenority = document.createElement('td');
-                    
-                    const tdActions = document.createElement('td');
-                    
-                    tr.appendChild(tdID);
-                    tr.appendChild(tdName);
-                    tr.appendChild(tdDescription);
-                    tr.appendChild(tdCategory);
-                    tr.appendChild(tdSenority);
-                    tdSenority.appendChild(tdActions);
-                    */
-                    var container = document.createElement('div');
-                    container.className = 'card';
-                    var title = document.createElement('h3');
-                    var description = document.createElement('p');
-                    var location = document.createElement('span');
-                    var seniority = document.createElement('span');
-                    var category = document.createElement('span');
-                    //const textID = document.createTextNode(job.id);
-                    //h3.appendChild(textID);
-                    var textName = document.createTextNode(job.name);
-                    title.appendChild(textName);
-                    var textDescription = document.createTextNode(job.description);
-                    description.appendChild(textDescription);
-                    var textLocation = document.createTextNode(job.location);
-                    location.appendChild(textLocation);
-                    var textCategory = document.createTextNode(job.category);
-                    category.appendChild(textCategory);
-                    var textSeniority = document.createTextNode(job.seniority);
-                    seniority.appendChild(textSeniority);
-                    var editBtn = document.createElement('a');
-                    editBtn.setAttribute('href', "edit-job.html?id=".concat(job.id));
-                    editBtn.appendChild(document.createTextNode('edit'));
-                    editBtn.className = 'button-28';
-                    var deleteBtn = document.createElement('button');
-                    deleteBtn.appendChild(document.createTextNode('delete'));
-                    deleteBtn.className = 'button-28';
-                    deleteBtn.addEventListener('click', function () { return __awaiter(_this, void 0, void 0, function () {
-                        return __generator(this, function (_a) {
-                            switch (_a.label) {
-                                case 0: return [4 /*yield*/, deleteJob(job.id)];
-                                case 1:
-                                    _a.sent();
-                                    loadCards(tableJobs);
-                                    return [2 /*return*/];
-                            }
-                        });
-                    }); });
-                    container.appendChild(title);
-                    container.appendChild(document.createElement('br'));
-                    container.appendChild(description);
-                    container.appendChild(document.createElement('br'));
-                    container.appendChild(location);
-                    container.appendChild(document.createElement('br'));
-                    container.appendChild(category);
-                    container.appendChild(document.createElement('br'));
-                    container.appendChild(seniority);
-                    container.appendChild(document.createElement('br'));
-                    container.appendChild(editBtn);
-                    container.appendChild(deleteBtn);
-                    tableJobs.appendChild(container);
-                });
+                drawCards(tableJobs, jobs);
                 return [2 /*return*/];
         }
     });
 }); };
 var tableJobs = document.getElementById('table-jobs');
+var locationOption = document.getElementById("new-job-location-tag");
+var seniorityOption = document.getElementById("new-job-seniority-tag");
+var categoryOption = document.getElementById("new-job-category-tag");
+locationOption === null || locationOption === void 0 ? void 0 : locationOption.addEventListener('change', function () { return __awaiter(_this, void 0, void 0, function () {
+    var locationToSearch, jobs, filteredJobs;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                locationToSearch = locationOption.value;
+                loader('show');
+                return [4 /*yield*/, getJobs()];
+            case 1:
+                jobs = _a.sent();
+                loader('hide');
+                filteredJobs = jobs.filter(function (x) { return x.location === locationToSearch; });
+                drawCards(tableJobs, filteredJobs);
+                return [2 /*return*/];
+        }
+    });
+}); });
+seniorityOption === null || seniorityOption === void 0 ? void 0 : seniorityOption.addEventListener('change', function () { return __awaiter(_this, void 0, void 0, function () {
+    var seniorityToSearch, jobs, filteredJobs;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                seniorityToSearch = seniorityOption.value;
+                loader('show');
+                return [4 /*yield*/, getJobs()];
+            case 1:
+                jobs = _a.sent();
+                loader('hide');
+                filteredJobs = jobs.filter(function (x) { return x.seniority === seniorityToSearch; });
+                drawCards(tableJobs, filteredJobs);
+                return [2 /*return*/];
+        }
+    });
+}); });
+categoryOption === null || categoryOption === void 0 ? void 0 : categoryOption.addEventListener('change', function () { return __awaiter(_this, void 0, void 0, function () {
+    var categotyToSearch, jobs, filteredJobs;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                categotyToSearch = categoryOption.value;
+                loader('show');
+                return [4 /*yield*/, getJobs()];
+            case 1:
+                jobs = _a.sent();
+                loader('hide');
+                filteredJobs = jobs.filter(function (x) { return x.category === categotyToSearch; });
+                drawCards(tableJobs, filteredJobs);
+                return [2 /*return*/];
+        }
+    });
+}); });
 loadCards(tableJobs);

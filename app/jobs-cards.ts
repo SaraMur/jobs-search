@@ -1,28 +1,6 @@
-const loadCards = async (tableJobs) =>{
-    loader('show');
-    const jobs = await getJobs();
-    loader('hide');
-
+const drawCards = (tableJobs, jobs) => {
     tableJobs.innerHTML = '';
-
     jobs.forEach(job =>{
-        /*
-        const tr = document.createElement('tr');
-        const tdID = document.createElement('td');
-        const tdName = document.createElement('td');
-        const tdDescription = document.createElement('td');
-        const tdCategory = document.createElement('td');
-        const tdSenority = document.createElement('td');
-        
-        const tdActions = document.createElement('td');
-        
-        tr.appendChild(tdID);
-        tr.appendChild(tdName);
-        tr.appendChild(tdDescription);
-        tr.appendChild(tdCategory);
-        tr.appendChild(tdSenority);
-        tdSenority.appendChild(tdActions);
-        */
         const container = document.createElement('div');
         container.className='card'
 
@@ -75,5 +53,46 @@ const loadCards = async (tableJobs) =>{
     })
 }
 
+const loadCards = async (tableJobs) =>{
+    loader('show');
+    const jobs = await getJobs();
+    loader('hide');
+    drawCards(tableJobs, jobs)
+}
+
 const tableJobs = document.getElementById('table-jobs');
+const locationOption = document.getElementById("new-job-location-tag");
+const seniorityOption = document.getElementById("new-job-seniority-tag");
+const categoryOption = document.getElementById("new-job-category-tag");
+
+locationOption?.addEventListener('change', async () =>{
+    const locationToSearch = (<HTMLSelectElement>locationOption).value;
+    loader('show');
+    const jobs = await getJobs();
+    loader('hide');
+    //filter
+    const filteredJobs = jobs.filter(x=> x.location === locationToSearch)
+    drawCards(tableJobs, filteredJobs)
+})
+
+seniorityOption?.addEventListener('change', async () =>{
+    const seniorityToSearch = (<HTMLSelectElement>seniorityOption).value;
+    loader('show');
+    const jobs = await getJobs();
+    loader('hide');
+    //filter
+    const filteredJobs = jobs.filter(x=> x.seniority === seniorityToSearch)
+    drawCards(tableJobs, filteredJobs)
+})
+
+categoryOption?.addEventListener('change', async () =>{
+    const categotyToSearch = (<HTMLSelectElement>categoryOption).value;
+    loader('show');
+    const jobs = await getJobs();
+    loader('hide');
+    //filter
+    const filteredJobs = jobs.filter(x=> x.category === categotyToSearch)
+    drawCards(tableJobs, filteredJobs)
+})
+
 loadCards(tableJobs);
