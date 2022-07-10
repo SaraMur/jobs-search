@@ -35,64 +35,90 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var _this = this;
-var loadCards = function (jobsTable) { return __awaiter(_this, void 0, void 0, function () {
+var loadCards = function (tableJobs) { return __awaiter(_this, void 0, void 0, function () {
     var jobs;
     var _this = this;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, getJobs()];
+            case 0:
+                loader('show');
+                return [4 /*yield*/, getJobs()];
             case 1:
                 jobs = _a.sent();
-                jobsTable.querySelector('tbody').innerHTML = '';
+                loader('hide');
+                tableJobs.innerHTML = '';
                 jobs.forEach(function (job) {
-                    var _a;
-                    var tr = document.createElement('tr');
-                    var tdID = document.createElement('td');
-                    var tdName = document.createElement('td');
-                    var tdDescription = document.createElement('td');
-                    var tdCategory = document.createElement('td');
-                    var tdSenority = document.createElement('td');
-                    var tdActions = document.createElement('td');
+                    /*
+                    const tr = document.createElement('tr');
+                    const tdID = document.createElement('td');
+                    const tdName = document.createElement('td');
+                    const tdDescription = document.createElement('td');
+                    const tdCategory = document.createElement('td');
+                    const tdSenority = document.createElement('td');
+                    
+                    const tdActions = document.createElement('td');
+                    
                     tr.appendChild(tdID);
                     tr.appendChild(tdName);
                     tr.appendChild(tdDescription);
                     tr.appendChild(tdCategory);
                     tr.appendChild(tdSenority);
                     tdSenority.appendChild(tdActions);
-                    var textID = document.createTextNode(job.id);
-                    tdID.appendChild(textID);
+                    */
+                    var container = document.createElement('div');
+                    container.className = 'card';
+                    var title = document.createElement('h3');
+                    var description = document.createElement('p');
+                    var location = document.createElement('span');
+                    var seniority = document.createElement('span');
+                    var category = document.createElement('span');
+                    //const textID = document.createTextNode(job.id);
+                    //h3.appendChild(textID);
                     var textName = document.createTextNode(job.name);
-                    tdName.appendChild(textName);
+                    title.appendChild(textName);
                     var textDescription = document.createTextNode(job.description);
-                    tdDescription.appendChild(textDescription);
+                    description.appendChild(textDescription);
+                    var textLocation = document.createTextNode(job.location);
+                    location.appendChild(textLocation);
                     var textCategory = document.createTextNode(job.category);
-                    tdCategory.appendChild(textCategory);
-                    var textSenority = document.createTextNode(job.senority);
-                    tdSenority.appendChild(textSenority);
+                    category.appendChild(textCategory);
+                    var textSeniority = document.createTextNode(job.seniority);
+                    seniority.appendChild(textSeniority);
                     var editBtn = document.createElement('a');
-                    editBtn.setAttribute('href', "edit-job.html?=id".concat(job.id));
+                    editBtn.setAttribute('href', "edit-job.html?id=".concat(job.id));
                     editBtn.appendChild(document.createTextNode('edit'));
+                    editBtn.className = 'button-28';
                     var deleteBtn = document.createElement('button');
                     deleteBtn.appendChild(document.createTextNode('delete'));
+                    deleteBtn.className = 'button-28';
                     deleteBtn.addEventListener('click', function () { return __awaiter(_this, void 0, void 0, function () {
                         return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0: return [4 /*yield*/, deleteJob(job.id)];
                                 case 1:
                                     _a.sent();
-                                    loadCards(jobsTable);
+                                    loadCards(tableJobs);
                                     return [2 /*return*/];
                             }
                         });
                     }); });
-                    tdActions.appendChild(editBtn);
-                    tdActions.appendChild(deleteBtn);
-                    //deleteBtn.innerHTML = '';
-                    (_a = jobsTable === null || jobsTable === void 0 ? void 0 : jobsTable.querySelector('tbody')) === null || _a === void 0 ? void 0 : _a.appendChild(tr);
+                    container.appendChild(title);
+                    container.appendChild(document.createElement('br'));
+                    container.appendChild(description);
+                    container.appendChild(document.createElement('br'));
+                    container.appendChild(location);
+                    container.appendChild(document.createElement('br'));
+                    container.appendChild(category);
+                    container.appendChild(document.createElement('br'));
+                    container.appendChild(seniority);
+                    container.appendChild(document.createElement('br'));
+                    container.appendChild(editBtn);
+                    container.appendChild(deleteBtn);
+                    tableJobs.appendChild(container);
                 });
                 return [2 /*return*/];
         }
     });
 }); };
-var jobsTable = document.getElementById('table-jobs');
-loadCards(jobsTable);
+var tableJobs = document.getElementById('table-jobs');
+loadCards(tableJobs);

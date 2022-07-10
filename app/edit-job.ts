@@ -1,17 +1,15 @@
 const params = new URLSearchParams(window.location.search);
-
 const formEdit = document.getElementById('form-edit-job');
 
 const loadForm = async () =>{
-    
+    loader('show');
     const job = await getJob(params.get('id'));
-
-    form?.name.value = job.name;
-    form?.description.value = job.description;
-    form?.location.value = job.location;
-    form?.seniority.value = job.seniority;
-    form?.category.value = job.category;
-    
+    loader('hide');
+    (<HTMLInputElement>document.getElementById("new-job-title")).value = job.name;
+    (<HTMLInputElement>document.getElementById("new-job-description")).value = job.description;
+    (<HTMLInputElement>document.getElementById("new-job-location-tag")).value = job.location;
+    (<HTMLInputElement>document.getElementById("new-job-seniority-tag")).value = job.seniority;
+    (<HTMLInputElement>document.getElementById("new-job-category-tag")).value = job.category;
 }
 loadForm();
 
@@ -19,7 +17,7 @@ loadForm();
 formEdit?.addEventListener('submit', async (event) => {
     event.preventDefault()
 
-    let name = (<HTMLInputElement>document.getElementById("new-job-name")).value;
+    let name = (<HTMLInputElement>document.getElementById("new-job-title")).value;
     let description =  (<HTMLInputElement>document.getElementById("new-job-description")).value;
     let location =  (<HTMLInputElement>document.getElementById("new-job-location-tag")).value;
     let seniority =  (<HTMLInputElement>document.getElementById("new-job-seniority-tag")).value;
@@ -33,8 +31,9 @@ formEdit?.addEventListener('submit', async (event) => {
         seniority,
         category 
     }
-    const data = editJob(requestData);
-
-    console.log('data Result');
-    console.log(data);
+    
+    loader('show');
+    await editJob(requestData);
+    loader('hide');
+    window.location.href = 'jobs-cards.html'
 });

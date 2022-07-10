@@ -41,39 +41,48 @@ var loadForm = function () { return __awaiter(_this, void 0, void 0, function ()
     var job;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, getJob(params.get('id'))];
+            case 0:
+                loader('show');
+                return [4 /*yield*/, getJob(params.get('id'))];
             case 1:
                 job = _a.sent();
-                form === null || form === void 0 ? void 0 : form.name.value = job.name;
-                form === null || form === void 0 ? void 0 : form.description.value = job.description;
-                form === null || form === void 0 ? void 0 : form.location.value = job.location;
-                form === null || form === void 0 ? void 0 : form.seniority.value = job.seniority;
-                form === null || form === void 0 ? void 0 : form.category.value = job.category;
+                loader('hide');
+                document.getElementById("new-job-title").value = job.name;
+                document.getElementById("new-job-description").value = job.description;
+                document.getElementById("new-job-location-tag").value = job.location;
+                document.getElementById("new-job-seniority-tag").value = job.seniority;
+                document.getElementById("new-job-category-tag").value = job.category;
                 return [2 /*return*/];
         }
     });
 }); };
 loadForm();
 formEdit === null || formEdit === void 0 ? void 0 : formEdit.addEventListener('submit', function (event) { return __awaiter(_this, void 0, void 0, function () {
-    var name, description, location, seniority, category, requestData, data;
+    var name, description, location, seniority, category, requestData;
     return __generator(this, function (_a) {
-        event.preventDefault();
-        name = document.getElementById("new-job-name").value;
-        description = document.getElementById("new-job-description").value;
-        location = document.getElementById("new-job-location-tag").value;
-        seniority = document.getElementById("new-job-seniority-tag").value;
-        category = document.getElementById("new-job-category-tag").value;
-        requestData = {
-            id: params.get('id'),
-            name: name,
-            description: description,
-            location: location,
-            seniority: seniority,
-            category: category
-        };
-        data = editJob(requestData);
-        console.log('data Result');
-        console.log(data);
-        return [2 /*return*/];
+        switch (_a.label) {
+            case 0:
+                event.preventDefault();
+                name = document.getElementById("new-job-title").value;
+                description = document.getElementById("new-job-description").value;
+                location = document.getElementById("new-job-location-tag").value;
+                seniority = document.getElementById("new-job-seniority-tag").value;
+                category = document.getElementById("new-job-category-tag").value;
+                requestData = {
+                    id: params.get('id'),
+                    name: name,
+                    description: description,
+                    location: location,
+                    seniority: seniority,
+                    category: category
+                };
+                loader('show');
+                return [4 /*yield*/, editJob(requestData)];
+            case 1:
+                _a.sent();
+                loader('hide');
+                window.location.href = 'jobs-cards.html';
+                return [2 /*return*/];
+        }
     });
 }); });
